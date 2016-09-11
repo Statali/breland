@@ -10,9 +10,10 @@ buildscript {
 	}
 }
 
+apply plugin: 'spring-boot'
 apply plugin: 'war'
 apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot.spring-boot'
+
 
 war {
 	baseName = 'localshop-provider'
