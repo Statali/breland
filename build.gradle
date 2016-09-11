@@ -40,8 +40,8 @@ dependencies {
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.2'
 	compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.2.1'
 	
-	/*compile('org.springframework.boot:spring-boot-starter-jta-atomikos')
-	compile('org.projectlombok:lombok')
+	compile('org.springframework.boot:spring-boot-starter-jta-atomikos')
+	/*compile('org.projectlombok:lombok')
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	compile('org.springframework.retry:spring-retry')
 	compile('org.springframework.boot:spring-boot-starter-security')
