@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.3.7.RELEASE'
+		springBootVersion = '1.4.0.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -39,7 +39,6 @@ dependencies {
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.2'
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.2'
 	compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.2.1'
-	
 	
 	compile('org.springframework.boot:spring-boot-starter-jta-atomikos')
 	/*compile('org.projectlombok:lombok')
