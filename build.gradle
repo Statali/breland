@@ -17,7 +17,7 @@ apply plugin: 'spring-boot'
 
 
 war {
-	baseName = 'localshop-provider'
+	baseName = 'ROOT.war'
 	version = '0.0.1'
 }
 sourceCompatibility = 1.8
