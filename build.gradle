@@ -11,12 +11,12 @@ buildscript {
 }
 
 
-apply plugin: 'war'
+apply plugin: 'jar'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 
 
-war {
+jar {
 	baseName = 'ROOT'
 }
 sourceCompatibility = 1.8
