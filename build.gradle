@@ -17,8 +17,7 @@ apply plugin: 'spring-boot'
 
 
 war {
-	baseName = 'ROOT.war'
-	version = '0.0.1'
+	baseName = 'ROOT'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
