@@ -28,8 +28,7 @@ public class SellerApiResource {
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.WILDCARD)
-	public String test(){
-		
+	public String test(){		
 		return "fgfdgdfg";
 	}
 	
