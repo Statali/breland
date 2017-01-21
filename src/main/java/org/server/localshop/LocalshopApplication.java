@@ -1,16 +1,26 @@
 package org.server.localshop;
 
-import org.springframework.boot.SpringApplication;
 
+import org.server.localshop.core.boot.AbstractApplicationConfiguration;
+import org.server.localshop.core.boot.EmbeddedTomcatConfiguration;
+import org.server.localshop.core.boot.WebXmlConfiguration;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
+@EnableTransactionManagement
+@ComponentScan("org.server.localshop")
 public class LocalshopApplication {
-
-	public static void main(String[] args) throws Exception
-	{
-		System.out.println("Tu dois marcher stp avec l'aide de Dieu");
+	
+	/*@Import({ EmbeddedTomcatConfiguration.class})*/
+	private static class Configuration extends AbstractApplicationConfiguration { }	
+	
+	public static void main(String[] args) throws Exception	{
 		SpringApplication.run(LocalshopApplication.class, args);
+		
 	}
 }
+
