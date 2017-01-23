@@ -1,69 +1,67 @@
 package org.server.localshop.domain;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 import org.springframework.data.jpa.domain.AbstractPersistable;
-
-import com.amazonaws.util.json.JSONException;
-import com.amazonaws.util.json.JSONObject;
 
 @Entity
 @Table(name="trade")
 public class Trade extends  AbstractPersistable<Long> {
 
+	@Column(nullable = false)
 	private String designation;
 
+	@Column(nullable = false)
 	private String description;
+	
+	@Column(nullable = false)
+	private double latitude;
 
-	@Column(name="po_box")
+	@Column(nullable = false)
+	private double longitude;
+	
+	@Column(nullable = false)
+	private String  phone;
+
+	@Column(name="po_box", length = 10,nullable = true)
 	private String poBox;
 
-	@Column(name="created_date")
+	@Column(name="created_date",nullable = false)
 	private String createdDate;
 
-	@Column(name="updated_date")
+	@Column(name="updated_date", nullable = false)
 	private String updatedDate;
 
-	@Column(name="trader_id")
-	private int traderId;
+	@OneToOne
+	private User user;
 	
-	@Column(name="image_id")
-	private int imageId;
+	@Column(name="logo_url",nullable = false)
+	private String logoUrl;
 	
-	/*@OneToMany(mappedBy="seller", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Products> productslist;*/
+	@OneToMany(mappedBy="trade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Product> productslist;
+	
+	
+	
+	
+	
+	public Trade(){
 
-	/*public Long getId() {
-		return this.id;
 	}
-
-	public void setId(long id) {
-		this.id = id;
-	}*/
+	
 
 	public String getDesignation() {
 		return designation;
 	}
-
-	/*public Set<Products> getProductslist() {
-		return productslist;
-	}
-
-	public void setProductslist(Set<Products> productslist) {
-		this.productslist = productslist;
-	}*/
 
 	public void setDesignation(String designation) {
 		this.designation = designation;
@@ -101,49 +99,55 @@ public class Trade extends  AbstractPersistable<Long> {
 		this.updatedDate = updatedDate;
 	}
 
-	public int getTraderId() {
-		return traderId;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setImageId(int imageId) {
-		this.imageId = imageId;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
+
+
+	public String getLogoUrl() {
+		return logoUrl;
+	}
+
+
+	public void setLogoUrl(String logoUrl) {
+		this.logoUrl = logoUrl;
+	}
+
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	
-	public int getImageId() {
-		return imageId;
-	}
-
-	public void setTraderId(int traderId) {
-		this.traderId = traderId;
-	}
-
-	public Trade(){
-
-	}
-
-	public Trade(String designation, String description, String poBox, String createdDate, String updatedDate,
-			int traderId) {
-		super();
-		this.designation = designation;
-		this.description = description;
-		this.poBox = poBox;
-		this.createdDate = createdDate;
-		this.updatedDate = updatedDate;
-		this.traderId = traderId;
-	}
-
-	public static Trade fromJson(JSONObject params){
-		try {
-			String designation= params.getString("designation");
-			final String description = params.getString("description");
-			final String poBox = params.getString("poBox");
-			final int sellerId = (int) params.getLong("traderId");
-			SimpleDateFormat  df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			return new Trade( designation,  description,  poBox,  df.format(new Date()),  df.format(new Date()),sellerId);
-		} catch (JSONException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 
 }

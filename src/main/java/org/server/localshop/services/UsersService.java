@@ -11,11 +11,14 @@ import org.springframework.stereotype.Service;
 public class UsersService {
 
 	private final UserRepository  userRepository;
+	private final DateTime dateTime;
+	
 
 
 	@Autowired
-	public UsersService( final UserRepository  userRepository){
+	public UsersService( final UserRepository  userRepository, final DateTime dateTime){
 		this.userRepository = userRepository;
+		this.dateTime = dateTime;
 	}	
 
 
@@ -33,6 +36,8 @@ public class UsersService {
 					result.getException().add((new IllegalArgumentException("user.with.phone.exist")));
 				}
 				else{
+					user.setCreatedDate(this.dateTime.getCurrentDateTime());
+					user.setUpdatedDate(this.dateTime.getCurrentDateTime());
 					user = this.userRepository.save(user);
 					result.setObject(user);
 				}
@@ -42,15 +47,17 @@ public class UsersService {
 	}
 
 
-	public User updateUser( User user){
+	public Response<User> updateUser( User user){
 		Response<User> result = new Response<User>();
 		if (!this.userRepository.exists(user.getId())) {
 			result.getException().add((new IllegalArgumentException("user.with.id.noexist")));
 		}
 		else{
-			user = this.userRepository.saveAndFlush(user);
+			user.setUpdatedDate(this.dateTime.getCurrentDateTime());			
+			user = this.userRepository.save(user);
+			result.setObject(user);
 		}
-		return user;
+		return result;
 	}
 
 

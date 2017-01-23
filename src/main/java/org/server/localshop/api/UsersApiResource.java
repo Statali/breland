@@ -35,7 +35,7 @@ public class UsersApiResource {
 	
 	@ResponseBody
 	@RequestMapping(value = "/users/", method = RequestMethod.PUT)
-    public User updateUser(@RequestBody User user) {
+    public Response<User> updateUser(@RequestBody User user) {
 		return this.usersService.updateUser(user);
 	}
 	

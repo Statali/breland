@@ -1,23 +1,11 @@
 package org.server.localshop.domain;
 
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.TemporalType;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
-
-import com.amazonaws.util.json.JSONException;
-import com.amazonaws.util.json.JSONObject;
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 /**
@@ -25,28 +13,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * 
  */
 @Entity
-@Table(name="users")
+@Table(name="user")
 public class User extends  AbstractPersistable<Long> {
 
+	@Column(name="date_of_birth", length = 20, nullable = true)
 	private String dob;
 
 	@Column(unique = true)
 	private String email;
 
+	@Column(length = 50, nullable = true)
 	private String firstname;
 
+	@Column(length = 50, nullable = true)
 	private String lastname;
 
 	@Column(unique = true)
 	private String  phone;
 
-	@Column(name="user_token", unique = true)
+	
+	@Column(name="user_token", unique = true, length = 255)
 	private String userToken;
 
 	@Column(name="is_trader")
 	private boolean isTrader;
 
-	@Column(name="trader_type")
+	@Column(name="trader_type", nullable = true)
 	private String traderType;
 
 	@Column(name="display_name")
@@ -55,15 +47,14 @@ public class User extends  AbstractPersistable<Long> {
 	@Column(name="created_date")
 	private String createdDate;
 
-
 	@Column(name="updated_date")
-	private Date updatedDate;
+	private String updatedDate;
 
-	@Column(name="image_id")
-	private Long imageId;
+	@Column(name="image_url",length = 255)
+	private String imageUrl;
 	
-	@Column(name="is_login")
-	private boolean isLogin;
+	@Column(name="is_logged")
+	private boolean isLogged;
 	
 
 
@@ -111,11 +102,11 @@ public class User extends  AbstractPersistable<Long> {
 		this.phone = phone;
 	}
 
-	public Date getUpdatedDate() {
+	public String getUpdatedDate() {
 		return this.updatedDate;
 	}
 
-	public void setUpdatedDate(Date updatedDate) {
+	public void setUpdatedDate(String updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 
@@ -165,24 +156,25 @@ public class User extends  AbstractPersistable<Long> {
 		this.displayName = displayName;
 	}
 
-	public Long getImageId() {
-		return imageId;
+		
+
+
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setImageId(Long imageId) {
-		this.imageId = imageId;
-	}	
-	
-	
-	
-
-
-	public boolean  getIsLogin() {
-		return isLogin;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
-	public void setLogin(boolean isLogin) {
-		this.isLogin = isLogin;
+	
+
+	public boolean isLogged() {
+		return isLogged;
+	}
+
+	public void setLogged(boolean isLogged) {
+		this.isLogged = isLogged;
 	}
 
 	public void setTrader(boolean isTrader) {
