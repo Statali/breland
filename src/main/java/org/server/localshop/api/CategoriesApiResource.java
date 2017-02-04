@@ -1,5 +1,7 @@
 package org.server.localshop.api;
 
+import java.util.List;
+
 import org.server.localshop.domain.Category;
 import org.server.localshop.domain.Response;
 import org.server.localshop.services.CategoryServices;
@@ -23,14 +25,20 @@ public class CategoriesApiResource {
 		
 	@ResponseBody
 	@RequestMapping(value = "/categories/", method = RequestMethod.POST)
-	public Response<Category> createCategory(@RequestBody Category category){
+	public Category createCategory(@RequestBody Category category){
 		return this.categoryServices.createCategory(category);
 	}
 	
 	
 	@ResponseBody
 	@RequestMapping(value = "/categories/", method = RequestMethod.PUT)
-    public Response<Category> updateTrade(@RequestBody Category category) {
+    public Category updateTrade(@RequestBody Category category) {
 		return this.categoryServices.updateCategory(category);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/categories/", method = RequestMethod.GET)
+    public List<Category> getAllCategories() {
+		return this.categoryServices.getAll();
 	}
 }

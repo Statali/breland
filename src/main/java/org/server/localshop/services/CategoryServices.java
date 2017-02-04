@@ -1,5 +1,7 @@
 package org.server.localshop.services;
 
+import java.util.List;
+
 import org.server.localshop.domain.Category;
 import org.server.localshop.domain.Response;
 import org.server.localshop.repositoryclasses.CategoryRepository;
@@ -19,36 +21,37 @@ public class CategoryServices {
 	}	
 	
 	
-	public Response<Category>  createCategory(Category category){
-		Response<Category> result = new Response<Category>();
-		if (category.getId() != null ) {
-			result.getException().add((new IllegalArgumentException("category.already.exist")));
+	public Category  createCategory(Category category){
+				if (category.getId() != null ) {
+			throw new IllegalArgumentException("category.already.exist");
 		}
 		else{
 			if(this.categoryRepository.findByDesignation(category.getDesignation()) != null) {
-				result.getException().add((new IllegalArgumentException("category.with.designation.exist")));
+				throw new IllegalArgumentException("category.with.designation.exist");
 			}
 			else{
 				category.setCreatedDate(this.dateTime.getCurrentDateTime());
 				category.setUpdatedDate(this.dateTime.getCurrentDateTime());
 				category = this.categoryRepository.save(category);
-					result.setObject(category);
 			}
 		}
-		return result;
+		return category;
 	}
 	
-	public Response<Category> updateCategory( Category category){
-		Response<Category> result = new Response<Category>();
+	public Category updateCategory( Category category){
+		
 		if (!this.categoryRepository.exists(category.getId())) {
-			result.getException().add((new IllegalArgumentException("category.with.id.noexist")));
+			throw new  IllegalArgumentException("category.with.id.noexist");
 		}
 		else{
 			category.setUpdatedDate(this.dateTime.getCurrentDateTime());			
 			category = this.categoryRepository.save(category);
-			result.setObject(category);
-		}
-		return result;
+					}
+		return category;
+	}
+	
+	public List<Category> getAll(){
+		return this.categoryRepository.findAll();
 	}
 	
 }

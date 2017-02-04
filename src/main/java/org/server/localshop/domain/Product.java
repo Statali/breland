@@ -37,6 +37,8 @@ public class Product extends  AbstractPersistable<Long>{
 
 	private String description;
 	
+	private boolean  publish;
+	
 	@Column(name="unit_quantity")
 	private Long unitQuantity;
 
@@ -262,6 +264,18 @@ public class Product extends  AbstractPersistable<Long>{
 
 	public void setTrades(Collection<Trade> trades) {
 		this.trades = trades;
+	}
+
+
+
+	public boolean isPublish() {
+		return publish;
+	}
+
+
+
+	public void setPublish(boolean publish) {
+		this.publish = publish;
 	}
 
 	

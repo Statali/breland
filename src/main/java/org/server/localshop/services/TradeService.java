@@ -25,7 +25,7 @@ public class TradeService {
 			result.getException().add((new IllegalArgumentException("trade.with.already.exist")));
 		}
 		else{
-			if(this.tradeRepository.findByDesignation(trade.getDesignation()) != null) {
+			if(this.tradeRepository.findByDesignation(trade.getNearestShopName()) != null) {
 				result.getException().add((new IllegalArgumentException("trade.with.designation.exist")));
 			}
 			else{
