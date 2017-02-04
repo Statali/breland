@@ -6,7 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -17,28 +16,30 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name="trade")
 public class Trade extends  AbstractPersistable<Long> {
 
-	@Column(nullable = false)
-	private String designation;
+	@Column(name="nearest_shops_name",nullable = false)
+	private String nearestShopName;
 
-	@Column(nullable = false)
-	private String description;
-	
-	@Column(nullable = false)
-	private double latitude;
+    private String address;
 
-	@Column(nullable = false)
-	private double longitude;
-	
-	@Column(nullable = false)
-	private String  phone;
+    private double latitude;
 
-	@Column(name="po_box", length = 10,nullable = true)
-	private String poBox;
+    private double longitude;
 
-	@Column(name="created_date",nullable = false)
+    private String  phone;
+
+    private String poBox;
+
+    private String email;
+
+    private String website;
+
+    @Column(name="representer_name",nullable = false)
+    private String representerName;
+    
+    @Column(name="created_date")
 	private String createdDate;
 
-	@Column(name="updated_date", nullable = false)
+	@Column(name="updated_date")
 	private String updatedDate;
 
 	@OneToOne
@@ -59,34 +60,7 @@ public class Trade extends  AbstractPersistable<Long> {
 	}
 	
 
-	public String getDesignation() {
-		return designation;
-	}
-
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getPoBox() {
-		return poBox;
-	}
-
-	public void setPoBox(String poBox) {
-		this.poBox = poBox;
-	}
-
-	public String getCreatedDate() {
-		return createdDate;
-	}
-
+	
 	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
@@ -147,6 +121,98 @@ public class Trade extends  AbstractPersistable<Long> {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+
+
+	public String getNearestShopName() {
+		return nearestShopName;
+	}
+
+
+
+	public void setNearestShopName(String nearestShopName) {
+		this.nearestShopName = nearestShopName;
+	}
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+
+	public String getPoBox() {
+		return poBox;
+	}
+
+
+
+	public void setPoBox(String poBox) {
+		this.poBox = poBox;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public String getWebsite() {
+		return website;
+	}
+
+
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+
+
+	public String getRepresenterName() {
+		return representerName;
+	}
+
+
+
+	public void setRepresenterName(String representerName) {
+		this.representerName = representerName;
+	}
+
+
+
+	public Set<Product> getProductslist() {
+		return productslist;
+	}
+
+
+
+	public void setProductslist(Set<Product> productslist) {
+		this.productslist = productslist;
+	}
+
+
+
+	public String getCreatedDate() {
+		return createdDate;
+	}
+	
+	
 
 	
 

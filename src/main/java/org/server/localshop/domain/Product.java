@@ -1,5 +1,6 @@
 package org.server.localshop.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
@@ -40,7 +41,7 @@ public class Product extends  AbstractPersistable<Long>{
 	private Long unitQuantity;
 
 	@Column(name="image_url")
-	private String imageUrl;
+	private ArrayList<String> imageUrl;
 
 
 	@Column(name="created_date")
@@ -49,6 +50,9 @@ public class Product extends  AbstractPersistable<Long>{
 
 	@Column(name="updated_date")
 	private String updatedDate;
+	
+	@Column(name="date_time_off")
+	private String dateTimeOff;
 	
 	@ManyToOne
 	@JoinColumn(name="category_id", nullable = false)
@@ -95,13 +99,13 @@ public class Product extends  AbstractPersistable<Long>{
 
 
 
-	public String getImageUrl() {
+	public ArrayList<String> getImageUrl() {
 		return imageUrl;
 	}
 
 
 
-	public void setImageUrl(String imageUrl) {
+	public void setImageUrl(ArrayList<String> imageUrl) {
 		this.imageUrl = imageUrl;
 	}
 
@@ -224,4 +228,42 @@ public class Product extends  AbstractPersistable<Long>{
 		this.unitQuantity = quantity_unit;
 	}
 
+
+
+	public String getDateTimeOff() {
+		return dateTimeOff;
+	}
+
+
+
+	public void setDateTimeOff(String dateTimeOff) {
+		this.dateTimeOff = dateTimeOff;
+	}
+
+
+
+	public Trade getTrade() {
+		return trade;
+	}
+
+
+
+	public void setTrade(Trade trade) {
+		this.trade = trade;
+	}
+
+
+
+	public Collection<Trade> getTrades() {
+		return trades;
+	}
+
+
+
+	public void setTrades(Collection<Trade> trades) {
+		this.trades = trades;
+	}
+
+	
+	
 }
